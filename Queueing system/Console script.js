@@ -42,6 +42,12 @@ function list(){
             }
             if(l == 2){
                 if(item.innerHTML != ''){
+                    var regexp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+                    if(regexp.test(item.innerText)){
+                        var url = item.innerHTML.match(regexp)[0];
+                        var replace = item.innerHTML.replace(regexp, '<a href="'+url+'">LINK</a>');
+                        item.innerHTML = replace;
+                    }
                     if(/description/i.test(item.innerHTML) != true){
                         item.innerHTML = '<strong>Description: </strong>' + item.innerHTML;
                     }
@@ -99,7 +105,6 @@ function deQueue(num, item){
                 alert('you can\'t do that');
                 item.parentNode.parentNode.style = ''; // Make the item re-appear if failed
             }
-            console.log(res);
         },
         error: function(err) {
             item.parentNode.parentNode.style = ''; // Make the item re-appear if failed
