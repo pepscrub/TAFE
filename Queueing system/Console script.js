@@ -4,10 +4,9 @@ document.querySelector('head').innerHTML += '<link rel="stylesheet" href="https:
 document.querySelector('input[type=button]').value = 'Post issue';
 // Select the node that will be observed for mutations
 var targetNode = document.getElementById('queuelist');
-
+var targetNode2 = document.getElementById('description');
 // Options for the observer (which mutations to observe)
-var config = { attributes: true, childList: true };
-
+var config = { childList: true };
 // Callback function to execute when mutations are observed
 // Using mutations due to javascript updating childnodes in the id
 // Also using mutations over DOMSubtreeModified since it's deprecciated and causes browser crashes
@@ -30,23 +29,30 @@ function list(){
     for(var i = 0; i < document.getElementsByClassName('queuerow').length; i++){ //Row items
         for(var l = 0; l < document.getElementsByClassName('queuerow')[i].childNodes.length; l++){ // Span items
             var item = document.getElementsByClassName('queuerow')[i].childNodes[l];
-            if(l ==0){
+            if(l ==0){ // User ID
                 item.innerHTML = '<strong>'+item.innerHTML+'</strong>'; // Styling the ID to be bold
             }
-            if(l == 1){
+            if(l == 1){ // Problem
                 if(item.innerHTML != ''){
                     if(/problem/i.test(item.innerHTML) != true){
                         item.innerHTML = '<strong>Problem: </strong>' + item.innerHTML; // Adding a tag to easily identify, ditto for description
                     }
                 }
             }
-            if(l == 2){
+            if(l == 2){ // Description
                 if(item.innerHTML != ''){
-                    var regexp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
-                    if(regexp.test(item.innerText)){
-                        var url = item.innerHTML.match(regexp)[0];
-                        var replace = item.innerHTML.replace(regexp, '<a href="'+url+'">LINK</a>');
-                        item.innerHTML = replace;
+                    // Url finder, attempts to find any urls in the description string and returns them as a acnchor tag with the domain man attached
+                    var regexp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g; // Search for url (/g is a global search call and returns arrays of the result)
+                    var loop_count = item.innerHTML.match(regexp).length;  // Grab the length of the regex
+                    var href = /href="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"/g; // Search for url that are contained in a href=""
+                    for(var o = 0; o < loop_count; o++){
+                        if(href.test(item.innerHTML) != true){
+                            var url = item.innerHTML.match(regexp)[o];
+                            var domain = url.split(".");
+                            var replace = item.innerHTML.replace(regexp, '<a href="'+url+'">'+domain[1]+'</a>');
+                            item.innerHTML = replace;
+                        }
+                        console.log(o);
                     }
                     if(/description/i.test(item.innerHTML) != true){
                         item.innerHTML = '<strong>Description: </strong>' + item.innerHTML;
@@ -54,30 +60,32 @@ function list(){
                 }
             }
             if(l == 3){ // Making the date human readable through json object and maths
-                var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                var date = new Date(item.innerHTML);
-                var day = date.getDate();
-                var month = date.getMonth();
-                var year = date.getFullYear();
-                var hour = date.getHours();
-                var minute = date.getMinutes();
-                if (hour > 13) {
-                    var hour = hour - 12;
-                    var am_pm = 'pm';
-                } else {
-                    var am_pm = 'am';
+                if(item.innerHTML.split("-").length > 2){
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var date = new Date(item.innerHTML);
+                    var day = date.getDate();
+                    var month = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                    if (hour > 13) {
+                        var hour = hour - 12;
+                        var am_pm = 'pm';
+                    } else {
+                        var am_pm = 'am';
+                    }
+                    if (hour == 0) {
+                        var hour = 12
+                    }
+                    if (hour < 10) { //Just adds a 0 (as a string) before the hour to keep it formatted well
+                        var hour = '0' + hour;
+                    }
+                    if (minute < 10) {
+                        var minute = '0' + minute;
+                    }
+                    var formattedDate = monthNames[month] + ' ' + day + ', ' + year + ' At ' + hour + ':' + minute + ' ' + am_pm;
+                    item.innerHTML = formattedDate;
                 }
-                if (hour == 0) {
-                    var hour = 12
-                }
-                if (hour < 10) { //Just adds a 0 (as a string) before the hour to keep it formatted well
-                    var hour = '0' + hour;
-                }
-                if (minute < 10) {
-                    var minute = '0' + minute;
-                }
-                var formattedDate = monthNames[month] + ' ' + day + ', ' + year + ' At ' + hour + ':' + minute + ' ' + am_pm;
-                item.innerHTML = formattedDate;
             }
             if(l == 4){ // Replace the a 'onclick' with custom functions onclick (just adds a comma and this tag)
                 var dequeue_item = item.childNodes[0].onclick
@@ -113,6 +121,15 @@ function deQueue(num, item){
             console.log(err); 
         }
     });
+}
+document.getElementById('description').setAttribute("onkeyup", "max_limit(2048, this)");
+document.getElementById('problem').setAttribute("onkeyup", "max_limit(256, this)");
+function max_limit(max, item){
+    if(item.value.length > max){
+        item.style = 'border-bottom: solid 1px #cc3e1e;';
+    }else{
+        item.style = 'border-bottom: solid 1px #fff';
+    }
 }
 list() // Calling list since otherwise it would only update on dom changes
 // Custom message when the code is excuted

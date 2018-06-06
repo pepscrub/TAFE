@@ -10,8 +10,7 @@ The main use of the script was to restyle an existing site used to communicate b
 The site had no css however. Using javascript and the dev console, or snippet; I could make the site pretty and add additional functionality as seen fit.
 > **Items learnt from the exeperience**
 > Mutaiton Observer libary in Javascript
-> Easily inject code into a site header to customize
-> Why the DOMSubtreeModified is a bad eventlistner
+> Regex, modifying urls in strings into clickable hrefs
 
 License
 ----
