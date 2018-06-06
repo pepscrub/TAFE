@@ -12,6 +12,10 @@ The site had no css however. Using javascript and the dev console, or snippet; I
 > Mutaiton Observer libary in Javascript
 > Regex, modifying urls in strings into clickable hrefs
 
+## Hamburger menu animation
+**Uses and purposes**
+Was designed as a copy paste system with little modification to use on my portfollio site.
+
 License
 ----
 
