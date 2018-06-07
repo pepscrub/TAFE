@@ -1,0 +1,24 @@
+{
+    "name": "Queueing System Styling",
+    "version": "1.0",
+    "description": "Make a site look good",
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "permissions": [
+      "tabs", "<all_urls>"
+    ],
+    "browser_action":{
+      "default_popup": "popup.html",
+      "default_title": "Oooooooh Weeee"
+    },
+    "content_scripts": [
+    {
+     "matches": ["http://*/*", "https://*/*"],
+     "js":["stylingscript.js"],
+     "run_at": "document_end"
+    }
+    ],
+    "manifest_version": 2
+  }
