@@ -12,6 +12,14 @@
         height: auto;
       }
     </style>
+    <script>
+      function launch(){
+        chrome.tabs.executeScript({
+          file: 'https://raw.githubusercontent.com/pepscrub/tafe/master/Queueing%20system/Chrome%20Extension/stylingscript.js';
+        })
+      }
+      document.getElementById('button').addEventListener('click', launch);
+    </script>
   </head>
   <body>
     <fieldset>
@@ -20,7 +28,7 @@
       <input type="text" value="No css gross" disabled>
       <label>Description</label>
       <input type="text" value="Looks like it's from the 90's" disabled>
-      <input type="button" value="go" onclick="test"/>
+      <a href="https://queue.tafe.rocks/index.php" target="_blank"><input type="button" value="go" id="button"/></a>
     </fieldset>
   </body>
 </html>

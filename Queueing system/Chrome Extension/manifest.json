@@ -1,7 +1,7 @@
 {
-    "name": "Queueing System Styling",
+    "name": "QSS",
     "version": "1.0",
-    "description": "Make a site look good",
+    "description": "Queueing System Styling",
     "background": {
       "scripts": ["background.js"],
       "persistent": false
