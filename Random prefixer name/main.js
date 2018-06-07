@@ -17,10 +17,9 @@ function input(char){
         var item = '|';
         for(var o = 0; o < char.length; o++){
             var curr_char = char.split('')[o];
-            console.log(curr_char)
             for(var l = 0; l < jsonItems.length; l++){
                 var words = jsonItems[l].charAt(0);
-                console.log(words)
+                console.log(jsonItems[l]);
                 if(words == curr_char){
                     item += jsonItems[l] + '|';
                     count++;
