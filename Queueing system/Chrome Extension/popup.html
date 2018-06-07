@@ -3,9 +3,27 @@
   <head>
     <style>
       input[type=button] {
+        transition: 250ms cubic-bezier(0.65, 1.78, 0, 0.98);
+        transform: none;
+        margin: 5% 0%;
         height: 100%;
         width: 100%;
         outline: none;
+        background-color: transparent;
+        box-shadow: 0px 0px 0px 1px rgba(216,84,60,1);
+        border: none;
+      }
+      input[type=button]:hover{
+        box-shadow: 0px 0px 0px 3px rgba(216,84,60,1);
+        transform: scale(1.05);
+        background-color: #ef492b;
+        color: #fff;
+      }
+      input[type=button]:active{
+        box-shadow: 0px 0px 0px 3px #e57e59;
+        transform: scale(1.05);
+        background-color: #e57e59;
+        color: #fff;
       }
       html{
         width: auto;
@@ -28,7 +46,7 @@
       <input type="text" value="No css gross" disabled>
       <label>Description</label>
       <input type="text" value="Looks like it's from the 90's" disabled>
-      <a href="https://queue.tafe.rocks/index.php" target="_blank"><input type="button" value="go" id="button"/></a>
+      <a id="button_click" href="https://queue.tafe.rocks/index.php" target="_blank"><input type="button" value="GO" id="button"/></a>
     </fieldset>
   </body>
 </html>
