@@ -15,18 +15,22 @@ function input(char){
         var jsonItems = Object.keys(Myjson);
         var count = 0;
         var item = '|';
-        for(var i = 0; i < jsonItems.length; i++){
-            var words = jsonItems[i].charAt(0);
-            if(words == String(char)){
-                item += jsonItems[i] + '|';
-                count++;
-                console.log(item);
+        for(var o = 0; o < char.length; o++){
+            var curr_char = char.split('')[o];
+            console.log(curr_char)
+            for(var l = 0; l < jsonItems.length; l++){
+                var words = jsonItems[l].charAt(0);
+                console.log(words)
+                if(words == curr_char){
+                    item += jsonItems[l] + '|';
+                    count++;
+                }
             }
-        }
-        var random = Math.floor((Math.random() * count) + 1);
-        var prefix = item.split("|")[random];
-        for(var i = 0; i < char.length; i++){
-            output.value += char.charAt(i) + ': '+prefix+'\n'; 
+            var random = Math.floor((Math.random() * count) + 1);
+            var prefix = item.split("|")[random];
+            for(var i = 0; i < char.length; i++){
+                output.value += char.charAt(i) + ': '+prefix+'\n'; 
+            }
         }
     })
     document.querySelector('input').removeAttribute('disabled', '')
