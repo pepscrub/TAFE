@@ -135,8 +135,9 @@ if(/queue.tafe.rocks\/index.php/.test(window.location.href)){
     list() // Calling list since otherwise it would only update on dom changes
     // Custom message when the code is excuted
     console.clear();
-    console.log('%c¯\\_(ツ)_\/¯ Yeet', 'font-size:6em;background-color: #232729; padding: .5em 1em; color: white; text-align: center;text-shadow:0 1px 0#ccc,0 2px 0  #c9c9c9 ,0 3px 0  #bbb ,0 4px 0  #b9b9b9 ,0 5px 0  #aaa ,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);')
+    console.log('%c', 'padding: 20em 22em; background-image: url("https://i.imgflip.com/12ic6x.jpg")');
+    console.log('%cYou can\'t stop me', 'padding: 1em 2em; background-color: #333; color: #fff; text-align: center;')
 }else{
     console.clear();
-    console.log('%c', 'padding: 20em 22em; background-image: url("https://i.imgflip.com/12ic6x.jpg")');
+    console.log('How the hell did you do that?')
 }
