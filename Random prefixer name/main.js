@@ -19,7 +19,6 @@ function input(char){
             var curr_char = char.split('')[o];
             for(var l = 0; l < jsonItems.length; l++){
                 var words = jsonItems[l].charAt(0);
-                console.log(jsonItems[l]);
                 if(words == curr_char){
                     item += jsonItems[l] + '|';
                     count++;
@@ -28,7 +27,7 @@ function input(char){
             var random = Math.floor((Math.random() * count) + 1);
             var prefix = item.split("|")[random];
             for(var i = 0; i < char.length; i++){
-                output.value += char.charAt(i) + ': '+prefix+'\n'; 
+                output.value += char.split('')[i] + ': '+prefix+'\n'; 
             }
         }
     })
