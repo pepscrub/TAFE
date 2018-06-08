@@ -12,6 +12,7 @@
         background-color: transparent;
         box-shadow: 0px 0px 0px 1px rgba(216,84,60,1);
         border: none;
+        cursor: pointer;
       }
       input[type=button]:hover{
         box-shadow: 0px 0px 0px 3px rgba(216,84,60,1);
@@ -21,7 +22,7 @@
       }
       input[type=button]:active{
         box-shadow: 0px 0px 0px 3px #e57e59;
-        transform: scale(1.05);
+        transform: scale(1.0125);
         background-color: #e57e59;
         color: #fff;
       }
@@ -29,14 +30,25 @@
         width: auto;
         height: auto;
       }
+      #button_click{
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+      legend{
+        text-align: center;
+      }
     </style>
     <script>
+      var button = document.getElementById('button')
       function launch(){
         chrome.tabs.executeScript({
-          file: 'https://raw.githubusercontent.com/pepscrub/tafe/master/Queueing%20system/Chrome%20Extension/stylingscript.js';
+          file: 'stylingscript.js'
         })
       }
-      document.getElementById('button').addEventListener('click', launch);
+      button.addEventListener('click', launch);      
     </script>
   </head>
   <body>

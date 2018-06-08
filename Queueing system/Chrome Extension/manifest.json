@@ -2,10 +2,6 @@
     "name": "QSS",
     "version": "1.0",
     "description": "Queueing System Styling",
-    "background": {
-      "scripts": ["background.js"],
-      "persistent": false
-    },
     "permissions": [
       "tabs", "<all_urls>"
     ],

@@ -123,15 +123,31 @@ if(/queue.tafe.rocks\/index.php/.test(window.location.href)){
             }
         });
     }
-    document.getElementById('description').setAttribute("onkeyup", "max_limit(2048, this)");
-    document.getElementById('problem').setAttribute("onkeyup", "max_limit(256, this)");
-    function max_limit(max, item){
-        if(item.value.length > max){
-            item.style = 'border-bottom: solid 1px #cc3e1e;';
+    var problem = document.getElementById('problem');
+    var desc = document.getElementById('description');
+    var button = document.querySelector('input[type=button]');
+    problem.addEventListener('change', function(e){
+        if(problem.value.length > 256){
+            problem.style = 'border-bottom: solid 1px #cc3e1e; transition: border-bottom 250ms ease-in-out;';
+            button.setAttribute('disabled', 'true');
+            button.style = 'cursor: not-allowed'
         }else{
-            item.style = 'border-bottom: solid 1px #fff';
+            problem.style = 'border-bottom: solid 1px #fff; transition: border-bottom 250ms ease-in-out;';
+            button.removeAttribute('disabled');
+            button.removeAttribute('style');
         }
-    }
+    })
+    desc.addEventListener('change', function(e){
+        if(desc.value.length > 2056){
+            desc.style = 'border-bottom: solid 1px #cc3e1e; transition: border-bottom 250ms ease-in-out;';
+            button.setAttribute('disabled', 'true');
+            button.style = 'cursor: not-allowed'
+        }else{
+            desc.style = 'border-bottom: solid 1px #fff; transition: border-bottom 250ms ease-in-out;';
+            button.removeAttribute('disabled');
+            button.removeAttribute('style');
+        }
+    });
     list() // Calling list since otherwise it would only update on dom changes
     // Custom message when the code is excuted
     console.clear();
