@@ -153,7 +153,4 @@ if(/queue.tafe.rocks\/index.php/.test(window.location.href)){
     console.clear();
     console.log('%c', 'padding: 20em 22em; background-image: url("https://i.imgflip.com/12ic6x.jpg")');
     console.log('%cYou can\'t stop me', 'padding: 1em 2em; background-color: #333; color: #fff; text-align: center;')
-}else{
-    console.clear();
-    console.log('How the hell did you do that?')
 }
