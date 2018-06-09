@@ -2,6 +2,7 @@ window.onload = (function(){
     var output = document.getElementById('output');
 })
 function input(char){
+    console.log(char);
     document.getElementById('output').value = '';
     // Fetching the json file (basically ajax)
 
@@ -12,13 +13,19 @@ function input(char){
         return response.json();
     })
     .then(function(Myjson){
-        var jsonItems = JSON.stringify(Object.keys(Myjson)).replace(/[\["\]]/g, '');
+        var jsonItems = Object.keys(Myjson);
         var curr_char = char.split('');
-        var random = Math.floor((Math.random() * 2) + 1);
-        console.log(jsonItems.split(',')[random])
-        // var prefix = item.split("|")[random];
-        for(var i = 0; i < char.length; i++){
-            output.value += char.split('')[i] + ': '+curr_char+'\n'; 
+        var items = '';
+        for(var i = 0; i < jsonItems.length; i++){
+            for(var l = 0; l < char.length; l++){
+                var str = '^['+curr_char[l]+']';
+                var re = new RegExp(str, 'gi');
+                if(re.test(jsonItems[i])){
+                    var random = Math.floor((Math.random() * jsonItems.length) + 1);
+                    items += jsonItems[i]+'|';
+                    output.value += char.split('')[l] + ': '+items.split('|')[random]+'\n'; 
+                }   
+            }
         }
     })
     document.querySelector('input').removeAttribute('disabled', '')
