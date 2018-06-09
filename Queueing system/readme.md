@@ -11,7 +11,7 @@ The site had no css however. Using javascript and the dev console, or snippet; I
 ![alt text](https://i.imgur.com/zOhD7Ib.png "The problem case, the site with no styling")
 ![alt text](https://i.imgur.com/umLRVA7.png "No styling, difficult to read actual problems")
 ### Solution
-*Script executes based on chrome plugin and check*
+*Script executes based on chrome plugin and check's the current url, and injects a style tag into the header*
 ![alt text](https://i.imgur.com/L59TyJQ.png "Site now has styling and looks a lot better")
 ![alt text](https://i.imgur.com/0Js1sCa.png "Problem and description are easier to read, the url has been converted into a link as well")
 ![alt text](https://i.imgur.com/wgdzLdj.png "The chrome plugin")
