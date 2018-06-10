@@ -13,17 +13,22 @@ function input(char){
         return response.json();
     })
     .then(function(Myjson){
-        var jsonItems = Object.keys(Myjson);
+        var jsonItems = Myjson;
         var curr_char = char.split('');
         var items = '';
+        var letter_loop = 0;
         for(var i = 0; i < jsonItems.length; i++){
             for(var l = 0; l < char.length; l++){
                 var str = '^['+curr_char[l]+']';
                 var re = new RegExp(str, 'gi');
                 if(re.test(jsonItems[i])){
                     var random = Math.floor((Math.random() * jsonItems.length) + 1);
-                    items += jsonItems[i]+'|';
-                    output.value += char.split('')[l] + ': '+items.split('|')[random]+'\n'; 
+                    console.log(jsonItems[random]);
+                    if(letter_loop == char.length){
+                        return; // Exit the loop if the length of the character are the same as the values iterated 
+                    }else{
+                        letter_loop++; // Incrimenting the letter loop value 
+                    }
                 }   
             }
         }
